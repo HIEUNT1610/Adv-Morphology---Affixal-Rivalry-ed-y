@@ -1,5 +1,5 @@
-# Exp-Morphology---Affixal-Rivalry-ed-y
-This is an end of semester project for the class Experimental Morphology at the University Paris Cite'.
+# Adv-Morphology---Affixal-Rivalry-ed-y
+This is an end of semester project for the class Advanced Morphology at the University Paris Cite'.
 
 The aim of this project is to investigate the affixal rivalry between the ending -ed and -y in English. According to the paper by Nagano (2022), there exists a purely semantic affixal rivalry between these two endings in the denominalized adjectives, created from English concrete nouns. This project aims to investigate the findings from Nagano (2022) by using the distributional methodology. 
 
