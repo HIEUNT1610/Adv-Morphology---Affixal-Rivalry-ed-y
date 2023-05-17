@@ -55,7 +55,60 @@ There are three experiments in this project. To answer the first research questi
     \subsection{Experiment 1:}
     Using the word2vec model, we first calculate the average similarity between two random words in the lexicon. To do this, we randomly chose 100,000 pairs from the lexicon, and compute the cosine similarity between the pairs. The result of this computation is 0.1308, and this serves as a baseline for the cosine similarity results. 
 
-    The next step is to calculate the average difference vectors between the roots and the derivations of the Nagano dataset. The vectorization model is used on both the roots and the derivations of the words in the Nagano dataset, and then the difference vector is calculated as $\text{difference vector}$ = $\text{root vector}$ - $\text{derivation vector}$. The difference vectors between each root and its two derivations are then compared using cosine similarity, then these values were used to calculate the average similarity between the two affixes \emph{-ed} and \emph{-y}. The result of this computation is 0.4162, which is 3.18 times higher than the baseline. This result shows that the two affixes are distributionally similar. The detailed result of this experiment is shown in the attached Jupyter notebook.
+    The next step is to calculate the average difference vectors between the roots and the derivations of the Nagano dataset. The vectorization model is used on both the roots and the derivations of the words in the Nagano dataset, and then the difference vector is calculated as $\text{difference vector}$ = $\text{root vector}$ - $\text{derivation vector}$. The difference vectors between each root and its two derivations are then compared using cosine similarity, then these values were used to calculate the average similarity between the two affixes \emph{-ed} and \emph{-y}. The result of this computation is 0.4162, which is 3.18 times higher than the baseline. This result shows that the two affixes are distributionally similar. The detailed result of this experiment is shown in Table 1.
+
+    \begin{table}[p]
+    \begin{center}
+        \begin{tabular}{||c c||}
+        \hline
+        ROOT & COSINE\_SIMILARITY \\
+        \hline
+        \hline
+        leg & 0.526988 \\
+        bone & 0.602122 \\
+        price & 0.537156 \\
+        wit & 0.264876 \\
+        curve & 0.628152 \\
+        head & 0.354714 \\
+        brain & 0.603593 \\
+        cheek & 0.448141 \\
+        feather & 0.641470 \\
+        hand & 0.227643 \\
+        head & 0.354714 \\
+        hip & 0.482956 \\
+        mouth & 0.506514 \\
+        nose & 0.364511 \\
+        skin & 0.517622 \\
+        tooth & 0.620628 \\
+        edge & 0.395138 \\
+        loft & 0.324167 \\
+        room & 0.246554 \\
+        shape & 0.319353 \\
+        taste & 0.323992 \\
+        fish & 0.202100 \\
+        leaf & 0.354984 \\
+        rock & 0.445634 \\
+        sand & 0.314394 \\
+        stone & 0.345706 \\
+        water & 0.352573 \\
+        air & 0.181804 \\
+        cloud & 0.606249 \\
+        dust & 0.459283 \\
+        ice & 0.322265 \\
+        mist & 0.297710 \\
+        snow & 0.462827 \\
+        sun & 0.424234 \\
+        dress & 0.036261 \\
+        oil & 0.509179 \\
+        spice & 0.556888 \\
+        sugar & 0.652546 \\
+        \hline    
+            
+        \end{tabular}
+    \end{center}
+    \caption{ Cosine similarity between the roots and their derivations}
+    \end{table}
+
 
     \subsection{Experiment 2:}
     First, the test data was extracted from the UniMorph database, only finding the denominalized adjectives ending in \emph{-ed} and \emph{-y}. This results in a list of 4191 words, with 42.92\% ending in \emph{-ed} and 57.08\% ending in \emph{-y}. 
@@ -67,8 +120,52 @@ There are three experiments in this project. To answer the first research questi
     \subsection{Experiment 3:}
     For the last experiment, we wanted to semantically retrofit the word vectors to see if there is semantic similarity between \emph{-ed} and \emph{-y} or not. A lexicon created from WordNet was used to provide the semantic information for the words. The retrofitting method from Faruqui et al. (2015) was used to create a new word vector based on the old word vector and the semantic information from the lexicon. The new word vector is calculated as follows: $\text{new word vector}$ = $\alpha$ * $\text{old word vector}$ + $\sum_{i=1}^{d_i}$ $\frac{1}{d_i}$ * ($\text{neighbor vectors})$, where $\alpha$ is a hyperparameter and $d_i$ is the number of neighbors of the word. The value of $\alpha$ is set to 1. This algorithm allows the new word vector to not only be similar to the old word vector, but also more similar to the semantically related neighbors of the word.
 
-    The retrofitting method was applied to the word vectors of the Nagano dataset, and then the difference vectors were recalculated. The average similarity between the two affixes was then calculated again, and the result is 0.495. Compared to the original vectors, the average similarity was increased only by a small amount of 0.0788, but it is still 3.19 times higher than the baseline. This modest gain was due to the fact that some of the similarities of the word vectors and their derivations were increased substantially,, such as \emph{bone} from 0.602 to 0.998 or \emph{curve} from 0.628 to 0.997, a few others were decreased. However, overall, the average similarity was increased, which shows that the two affixes are semantically similar. The detailed result of this experiment is shown in the attached Jupyter notebook.
+    The retrofitting method was applied to the word vectors of the Nagano dataset, and then the difference vectors were recalculated. The average similarity between the two affixes was then calculated again, and the result is 0.495. Compared to the original vectors, the average similarity was increased only by a small amount of 0.0788, but it is still 3.19 times higher than the baseline. This modest gain was due to the fact that some of the similarities of the word vectors and their derivations were increased substantially,, such as \emph{bone} from 0.602 to 0.998 or \emph{curve} from 0.628 to 0.997, a few others were decreased. However, overall, the average similarity was increased, which shows that the two affixes are semantically similar. The detailed result of this experiment is shown in Table 2.
 
+    \begin{table}[p]
+        \begin{center}
+            \begin{tabular}{||c c c c c||}
+            \hline
+            ROOT & DERIV\_ed & DERIV\_y & COSINE\_SIMILARITY & OLD\_COSINE\_SIMILARITY \\
+            \hline
+            \hline
+            bone & boned & boney & 0.998281 & 0.602122 \\
+            curve & curved & curvy & 0.997423 & 0.628152 \\
+            head & headed & heady & 0.996630 & 0.354714 \\
+            brain & brained & brainy & 0.996457 & 0.603593 \\
+            hip & hipped & hippy & 0.482956 & 0.354714 \\
+            mouth & mouthed & mouthy & 0.506514 & 0.482956 \\
+            nose & nosed & nosy & 0.364511 & 0.506514 \\
+            skin & skinned & skinny & 0.517622 & 0.364511 \\
+            tooth & toothed & toothy & 0.998461 & 0.517622 \\
+            edge & edged & edgy & 0.395138 & 0.620628 \\
+            loft & lofted & lofty & 0.324167 & 0.395138 \\
+            room & roomed & roomy & 0.246554 & 0.324167 \\
+            shape & shaped & shapely & 0.996835 & 0.246554 \\
+            taste & tasted & tasty & 0.323992 & 0.319353 \\
+            fish & fished & fishy & 0.202100 & 0.323992 \\
+            leaf & leafed & leafy & 0.354984 & 0.202100 \\
+            rock & rocked & rocky & 0.445634 & 0.354984 \\
+            sand & sanded & sandy & 0.314394 & 0.445634 \\
+            stone & stoned & stony & 0.345706 & 0.314394 \\
+            water & watered & watery & 0.352573 & 0.345706 \\
+            air & aired & airy & 0.181804 & 0.352573 \\
+            cloud & clouded & cloudy & 0.606249 & 0.181804 \\
+            dust & dusted & dusty & 0.459283 & 0.606249 \\
+            ice & iced & icy & 0.322265 & 0.459283 \\
+            mist & misted & misty & 0.297710 & 0.322265 \\
+            snow & snowed & snowy & 0.462827 & 0.297710 \\
+            sun & sunned & sunny & 0.424234 & 0.462827 \\
+            dress & dressed & dressy & 0.036261 & 0.424234 \\
+            oil & oiled & oily & 0.509179 & 0.036261 \\
+            spice & spiced & spicy & 0.556888 & 0.509179 \\
+            sugar & sugared & sugary & 0.652546 & 0.556888 \\
+            \hline    
+                
+            \end{tabular}
+        \end{center}
+        \caption{Original and retrofitted cosine similarities.}
+        \end{table}
 \section{Discussion}
     The results of the three experiments show that there exists both distributional and semantic similarity between the two affixes \emph{-ed} and \emph{-y}. However, the accuracy of the second experiment is still much lower than the baseline of predicting the most frequent affix, which is 57.08\%. We looked at this problem from a few other perspectives:
     \begin{itemize}
