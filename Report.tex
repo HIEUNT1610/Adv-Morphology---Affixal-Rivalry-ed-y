@@ -3,6 +3,8 @@
 \usepackage{graphicx}
 \usepackage{fullpage}
 \usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{pgfplotstable}
 
 
 \title{A distributional analysis 
@@ -16,24 +18,60 @@ of affixal rivalry between \emph{-ed} and \emph{-y} in English}
 \maketitle
 
 \begin{abstract}
-    Let's put something in here for the abstract.
+    The paper \emph{Affixal rivalry and its purely semantic resolution among English derived adjectives} by Nagano (2022) has claimed an interesting finding about the affixal rivalry between the ending -ed and -y in English. According to Nagano, there exists a purely semantic affixal rivalry between these two endings in the denominalized adjectives, created from English concrete nouns. The authors of this study is interested in looking at this finding from a different perspective, by using the distributional methodology, as demonstrated in Naranjo and Bonami (2023).
 \end{abstract}
 
 \section{Literature review}
+\subsection{Affixal rivalry in English affixes \emph{-ed} and \emph{-y}}
 
+\subsection{Distributional methodology for affixal rivalry}
 
 \section{Research questions}
+    Because Nagano (2022) explained the affixal rivalry between \emph{-ed} and \emph{-y} in English from a purely semantic perspective, therefore, the dataset used in that paper is very limited. We are interested in investigating this finding from a distributional perspective. Therefore, the research questions of this study are as follows:
+    \begin{itemize}
+        \item Is there similarity between the affixes \emph{-ed} and \emph{-y} in terms of their distributional behavior? To answer this question, this study will look at the distributional representations of the two affixes, by using conventional word embeddings such as word2vec.
+        \item Are there evidence of affixal rivalry between \emph{-ed} and \emph{-y} in English, in a larger and not hand-picked dataset? To answer this question, this study will train a neural network on the dataset from Nagano (2022), and test the classifier on unseen data extracted from UniMorph. If there exists a rivalry between the two affixes, the classifier should not be able to accurately predict the correct affix for the unseen data.
+        \item The conventional distributional representations of words may not be able to capture sematic relationships between words. Therefore, this study will also implement a retrofitting algorithm from Faruqui (2015) to augment the word embeddings. If the similarity between the two affixes is increased after retrofitting, it means that there exists a semantic relationship between the two affixes.
+    \end{itemize}
 
 \section{Methodology and Experiment design}
+There are three experiments in this project. To answer the first research question, we calculate and compare the difference vectors between the two affixes to see if they are semantically comparable or not. The second experiment is to train a neural network classifier on these difference vectors, then test the classifier on unseen data, in this case the data from UniMorph. The last question augmenting the semantics of the word embeddings using the semantic retrofitting method will be addressed in the third experiment.
 
+\subsection*{Experiment 1:}
+    For this experiment, the dataset from Nagano (2022) and a distributional word vectorization system are needed. The idea is to represent the roots of chosen words and their derivations in a vector space, so that we can use computation to calculate the similarity. The chosen vector space is the Google-News-300 dataset from word2vec model, which is accessible from the Gensim package. This vector space is created from a vocabulary of 3 million words from Google News, and each word is represented by a 300-dimensional vector. The dataset from Nagano (2022) is a hand-picked dataset of 38 words, which have both \emph{-ed} and \emph{-y} derivations. The roots of these words are concrete nouns, and the derivations are adjectives, so the process is denominalization. The difference vectors between the roots and the derivations are calculated by subtraction, and the average difference vectors of the two affixes are compared using cosine similarity. If the two affixes are distributionally similar, the difference vectors should be similar as well.
+
+\subsection{Experiment 2:}
+    For the second experiment, we will create a neural network classifier with one hidden layer to train on the Nagano dataset, then use the classifier to predict the derivation of the unseen root words during training. The test dataset is extracted from UniMorph, and the words are filtered to only include words that can have \emph{-ed} or \emph{-y} affixes. The classifier will be trained on the vectorized roots and their derivations from the Nagano dataset, and the classifier will be trained for 100 epochs using 10 folds to maximize learning efficiency due to the limited number of training examples. After training, the classifier will be tested on the UniMorph dataset of 4191 words, which were then vectorized by the word2vec model. The ratio of \emph{-ed} affix is 42.92\%, while the ratio of \emph{-y} affix is 57.08\%. The classifier will be tested on this UniMorph dataset, and the accuracy will be calculated. If the classifier can predict the derivation of the unseen words with an accuracy of around 50\%, it means that the classifier is not able to distinguish between the two affixes, and therefore there exists an affixal rivalry between the two affixes.
+
+\subsection{Experiment 3:}
+    Semantic retrofitting is a method to improve the quality of the word vectors by using the semantic information (synonyms, antonyms, hyper/hyponyms) from a lexicon. 
+
+    In this experiment, we will use the retrofitting method from Faruqui et al. (2015) and the WordNet lexicon to improve the quality of the word vectors from the training data. The WordNet lexicon provides the semantic information for the words, and then use the retrofitting method to create a new word vector based on the old word vector and the "neighbors" of the word. The idea of retrofitting is to have a new word vector that is close (has a better cosine similarity) to the old word vector, but is also closer to the neighbors of the word. This new word vector is then said to be capturing the semantic information of the word better than the purely distributional word vector.
+
+    Then we will recalculate the difference vectors to see if there are improvements or not, and if these improvements are significant. If the difference vectors are more similar after retrofitting, it means that the two affixes are semantically related.
 
 \section{Results}
+    \subsection{Experiment 1:}
+    Using the word2vec model, we first calculate the average similarity between two random words in the lexicon. To do this, we randomly chose 100,000 pairs from the lexicon, and compute the cosine similarity between the pairs. The result of this computation is 0.1308, and this serves as a baseline for the cosine similarity results. 
+
+    The next step is to calculate the average difference vectors between the roots and the derivations of the Nagano dataset. The vectorization model is used on both the roots and the derivations of the words in the Nagano dataset, and then the difference vector is calculated as \text{difference vector} = \text{root vector} - \text{derivation vector}. The difference vectors between each root and its two derivations are then compared using cosine similarity, then these values were used to calculate the average similarity between the two affixes \emph{-ed} and \emph{-y}. The result of this computation is 0.4162, which is 3.18 times higher than the baseline. This result shows that the two affixes are distributionally similar. The detailed result of this experiment is shown in the attached Jupyter notebook.
+
+    \subsection{Experiment 2:}
+    First, the test data was extracted from the UniMorph database, only finding the denominalized adjectives ending in \emph{-ed} and \emph{-y}. This results in a list of 4191 words, with 42.92\% ending in \emph{-ed} and 57.08\% ending in \emph{-y}. 
+
+    Next, a neural network classifier was initialized using PyTorch. This classifier has one hidden layer of 128 neurons, using ReLU as the activation function. The input layer has 300 neurons, which is the same as the dimension of the word vectors. The output layer has 2 neurons, which is the number of classes.  
+    
+    The classifier was then trained on the Nagano dataset of 76 examples. The classifier was trained for 100 epochs, using 10 folds to maximize learning efficiency. When tested on the test dataset from UniMorph, the classifer gave an accuracy of 49.146\%, which is slightly lower than the expected result of 50\%. This result shows that the classifier trained on the difference vectors of \emph{-ed} and \emph{-y} is not able to distinguish between the two affixes, and therefore distributionally, there exists an affixal rivalry between these two affixes. The detailed result of this experiment is shown in the attached Jupyter notebook. However, this result is still lower than the most frequent class of 57.08\%, so there might be room to improve. 
+
+    \subsection{Experiment 3:}
+    For the last experiment, we wanted to retrofit the word vectors to see if there are semantic similarity between \emph{-ed} and \emph{-y} or not. 
+
 
 \section{Discussion}
 
 \section{Conclusion}    
 
-
+\nocite{*}
 \bibliography{biblio}
 
 \end{document}
