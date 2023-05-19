@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.26)  19 MAY 2023 20:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.26)  19 MAY 2023 20:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**e:/Python/Adv-Morphology---Affixal-Rivalry-ed-y/NGO-ZHENG_Affixal-rivalry-ed-y.tex
-(e:/Python/Adv-Morphology---Affixal-Rivalry-ed-y/NGO-ZHENG_Affixal-rivalry-ed-y.tex
+**e:/Python/Adv-Morphology---Affixal-Rivalry-ed-y/Report/NGO-ZHENG_Affixal-rivalry-ed-y.tex
+(e:/Python/Adv-Morphology---Affixal-Rivalry-ed-y/Report/NGO-ZHENG_Affixal-rivalry-ed-y.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-01-16> (C:\Users\Wazzat\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -177,7 +177,7 @@ Package grfext Info: Graphics extension search list:
  (C:\Users\Wazzat\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-e:/Python/Adv-Morphology---Affixal-Rivalry-ed-y/NGO-ZHENG_Affixal-rivalry-ed-y.tex:17: Extra alignment tab has been changed to \cr.
+e:/Python/Adv-Morphology---Affixal-Rivalry-ed-y/Report/NGO-ZHENG_Affixal-rivalry-ed-y.tex:17: Extra alignment tab has been changed to \cr.
 <recently read> \endtemplate 
                              
 l.17 \maketitle
@@ -201,12 +201,12 @@ Package natbib Warning: Citation(s) may have changed.
 ) ) 
 Here is how much of TeX's memory you used:
  3046 strings out of 476404
- 50626 string characters out of 2789052
+ 50682 string characters out of 2789052
  1873324 words of memory out of 3000000
  23375 multiletter control sequences out of 15000+600000
  521518 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,11n,67p,1517b,297s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 62i,11n,67p,1524b,297s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\Wazzat\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\Wazzat\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0700.pk> <C:\Users\Wazzat\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Wazzat/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
 Output written on NGO-ZHENG_Affixal-rivalry-ed-y.pdf (9 pages, 195890 bytes).
 PDF statistics:
